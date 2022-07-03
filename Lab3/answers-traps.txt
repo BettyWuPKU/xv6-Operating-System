@@ -1,0 +1,14 @@
+1. Which registers contain arguments to the functions? For example, which register holds 13 in main's call to printf?
+函数调用通过a0, a1, a2...a8传递参数，返回值放在a0或a1寄存器。在printf中，由a2传递13这个参数。
+2. Where is the call to function f in the assembly code for main? Where is the call to g?
+在main函数中，f的调用被优化了，在printf之前直接把12这个结果赋值给了对应的寄存器。而对g的调用是在f函数中，在汇编中也被内联优化，没有调用的过程，直接将g对应的汇编实现加入到f的汇编中。
+3. At what address is the function printf located?
+0x640
+4. What value is in the register ra just after the jar to printf in main?
+0x30
+5. What is the output? If big -endian, what is the proper value for i? And if the change to 57616 be needed?
+Output: He110 World
+i: 0x726C6400
+不需要改变57616
+6. What will be printed after 'y='? Why?
+-280324136；应该是寄存器a2中的值，printf会在a2获取y的值
